@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiphonic — Commercial strategy for ideas, culture and causes</title>
+<meta name="description" content="Multiphonic is a commercial strategy consultancy for organisations built on ideas, culture and causes. We build the revenue, partnerships and events engine that mission-driven organisations are usually missing.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /*
+    ── BRAND FONT UPGRADE ────────────────────────────────────────────────
+    The wordmark falls back to Jost (free) until the licensed brand font is
+    added. To use the real Neue Einstellung: buy the WEBFONT licence from
+    Hanken Design Co (~US$125/yr), drop the .woff2 files into /fonts in this
+    repo, then uncomment the block below. Nothing else needs to change — the
+    wordmark's font stack already prefers "Neue Einstellung".
+
+    @font-face{
+      font-family:"Neue Einstellung";
+      src:url("/fonts/NeueEinstellung-Regular.woff2") format("woff2");
+      font-weight:400; font-display:swap;
+    }
+    ──────────────────────────────────────────────────────────────────────
+  */
+
+  :root{
+    --paper:#F5F3ED;
+    --ink:#1A1917;
+    --ink-soft:#4A473F;
+    --ink-mute:#8A8478;
+    --hair:#CFC9BC;
+    --measure:34rem;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100vh;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .page{
+    flex:1 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:clamp(3rem,8vh,7rem) 1.5rem clamp(2rem,5vh,4rem);
+  }
+
+  .eyebrow{
+    font-size:.7rem;
+    letter-spacing:.4em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin-bottom:clamp(1.6rem,4vh,2.6rem);
+  }
+
+  .wordmark{
+    font-family:"Neue Einstellung","Jost",system-ui,sans-serif;
+    font-weight:400;
+    font-size:clamp(2.6rem,10vw,5.8rem);
+    letter-spacing:.22em;
+    line-height:1;
+    text-indent:.22em; /* offset the trailing track so caps sit centred */
+    color:var(--ink);
+  }
+
+  .tagline{
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1rem,2.6vw,1.2rem);
+    color:var(--ink-soft);
+    margin-top:clamp(1rem,2.6vh,1.5rem);
+    letter-spacing:.01em;
+  }
+
+  /* Signature: a harmonic series — several notes from one source */
+  .partials{
+    margin:clamp(2.2rem,6vh,3.6rem) 0 clamp(2.2rem,6vh,3.4rem);
+    width:min(20rem,60vw);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.5rem;
+  }
+  .partials span{
+    display:block;
+    height:1px;
+    background:var(--ink);
+    opacity:.5;
+    transform:scaleX(0);
+    transform-origin:center;
+  }
+  .partials span:nth-child(1){ width:100%; }
+  .partials span:nth-child(2){ width:72%;  opacity:.42; }
+  .partials span:nth-child(3){ width:52%;  opacity:.34; }
+  .partials span:nth-child(4){ width:37%;  opacity:.26; }
+  .partials span:nth-child(5){ width:26%;  opacity:.18; }
+
+  .lede{
+    font-family:"Jost",system-ui,sans-serif;
+    font-weight:300;
+    font-size:clamp(1.5rem,4.4vw,2.15rem);
+    line-height:1.34;
+    color:var(--ink);
+    max-width:24rem;
+    letter-spacing:.01em;
+  }
+
+  .body{
+    margin-top:clamp(1.5rem,4vh,2.2rem);
+    max-width:var(--measure);
+    font-size:clamp(.98rem,1.4vw,1.06rem);
+    line-height:1.72;
+    color:var(--ink-soft);
+  }
+
+  /* Proof slot — swap in the Green Room result after the event (see comment) */
+
+  .foot{
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.9rem;
+    padding:clamp(1.8rem,5vh,2.8rem) 1.5rem clamp(2rem,5vh,3rem);
+    border-top:1px solid var(--hair);
+    margin:0 auto;
+    width:min(var(--measure),100% - 3rem);
+  }
+  .foot-links{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:.6rem 2rem;
+  }
+  .foot a,
+  .foot .place{
+    font-size:.72rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+  }
+  .foot a{
+    text-decoration:none;
+    transition:color .25s ease;
+  }
+  .foot a:hover,
+  .foot a:focus-visible{ color:var(--ink); }
+
+  a:focus-visible{
+    outline:1.5px solid var(--ink);
+    outline-offset:4px;
+    border-radius:1px;
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .anim{ opacity:0; transform:translateY(10px); }
+    body.ready .anim{
+      opacity:1; transform:none;
+      transition:opacity 1s ease, transform 1s ease;
+    }
+    body.ready .d1{ transition-delay:.05s; }
+    body.ready .d2{ transition-delay:.30s; }
+    body.ready .d3{ transition-delay:.55s; }
+    body.ready .d4{ transition-delay:1.25s; }
+    body.ready .d5{ transition-delay:1.55s; }
+
+    body.ready .partials span{
+      transform:scaleX(1);
+      transition:transform .9s cubic-bezier(.22,.61,.36,1);
+    }
+    body.ready .partials span:nth-child(1){ transition-delay:.75s; }
+    body.ready .partials span:nth-child(2){ transition-delay:.83s; }
+    body.ready .partials span:nth-child(3){ transition-delay:.91s; }
+    body.ready .partials span:nth-child(4){ transition-delay:.99s; }
+    body.ready .partials span:nth-child(5){ transition-delay:1.07s; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .partials span{ transform:scaleX(1); }
+  }
+</style>
+</head>
+<body>
+
+  <main class="page">
+
+    <p class="eyebrow anim d1">Cultural &amp; commercial strategy</p>
+
+    <h1 class="wordmark anim d2">MULTIPHONIC</h1>
+
+    <p class="tagline anim d3">Several notes, one voice.</p>
+
+    <div class="partials" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <p class="lede anim d4">The commercial engine for organisations built on ideas, culture and causes.</p>
+
+    <p class="body anim d5">Mission-driven and culturally-led organisations are good at building movements, audiences and trust, and less well set up to fund them. Multiphonic builds the commercial side to match: revenue strategy, partnerships and sponsorship, and events that pay for themselves. We work across progressive causes, sport and culture, pairing commercial strategy with senior communications so the model and the message land together.</p>
+
+    <!--
+      PROOF SLOT — add after the Green Room (7 July). Paste below the .body:
+
+      <section class="proof anim d5" aria-label="Selected work"
+               style="margin-top:clamp(2rem,5vh,3rem);max-width:var(--measure);">
+        <p style="font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.7rem;">Selected work</p>
+        <p style="font-size:clamp(.98rem,1.4vw,1.06rem);color:var(--ink-soft);line-height:1.6;">
+          [The Green Room result — e.g. a speaker series built for the Australian
+          Greens that covered its costs on ticket revenue at its first edition.]
+        </p>
+      </section>
+    -->
+
+  </main>
+
+  <footer class="foot">
+    <span class="place">Sydney</span>
+    <div class="foot-links">
+      <a href="mailto:jasper@multiphonic.com.au">jasper@multiphonic.com.au</a>
+      <a href="mailto:brid@multiphonic.com.au">brid@multiphonic.com.au</a>
+      <a href="https://www.linkedin.com/company/multiphonic-au/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function(){
+      requestAnimationFrame(function(){ document.body.classList.add('ready'); });
+    });
+  </script>
+
+</body>
+</html>
