@@ -1,251 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Multiphonic — Commercial strategy for ideas, culture and causes</title>
-<meta name="description" content="Multiphonic is a commercial strategy consultancy for organisations built on ideas, culture and causes. We build the revenue, partnerships and events engine that mission-driven organisations are usually missing.">
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiphonic, the commercial and communications engine for ideas, culture and causes</title>
+<meta name="description" content="Multiphonic builds the commercial and communications engine for organisations built on ideas, culture and causes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&amp;display=swap" rel="stylesheet">
 <style>
-  /*
-    ── BRAND FONT UPGRADE ────────────────────────────────────────────────
-    The wordmark falls back to Jost (free) until the licensed brand font is
-    added. To use the real Neue Einstellung: buy the WEBFONT licence from
-    Hanken Design Co (~US$125/yr), drop the .woff2 files into /fonts in this
-    repo, then uncomment the block below. Nothing else needs to change — the
-    wordmark's font stack already prefers "Neue Einstellung".
-
-    @font-face{
-      font-family:"Neue Einstellung";
-      src:url("/fonts/NeueEinstellung-Regular.woff2") format("woff2");
-      font-weight:400; font-display:swap;
-    }
-    ──────────────────────────────────────────────────────────────────────
+  /* Licensed brand font: drop NeueEinstellung-Regular.woff2 into /fonts and uncomment.
+  @font-face{ font-family:"Neue Einstellung"; src:url("/fonts/NeueEinstellung-Regular.woff2") format("woff2"); font-weight:400; font-display:swap; }
   */
-
-  :root{
-    --paper:#F5F3ED;
-    --ink:#1A1917;
-    --ink-soft:#4A473F;
-    --ink-mute:#8A8478;
-    --hair:#CFC9BC;
-    --measure:34rem;
+  html, body { margin:0; padding:0; background:#F5F3ED; -webkit-text-size-adjust:100%; }
+  * { box-sizing:border-box; }
+  a { color:#1A1917; }
+  a:hover { color:#4A473F; }
+  a:focus-visible, [tabindex]:focus-visible { outline:1.5px solid #1A1917; outline-offset:4px; border-radius:1px; }
+  @keyframes hsdraw { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @keyframes fadeup { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  @keyframes cue { 0%,100% { transform:scaleY(.35); opacity:.45; } 50% { transform:scaleY(1); opacity:1; } }
+  [data-reveal="off"] { opacity:0; transform:translateY(16px); }
+  [data-reveal="in"] { opacity:1; transform:none; transition:opacity .8s ease, transform .8s ease; }
+  html.js [data-nav] { opacity:0; visibility:hidden; transform:translateY(-100%); transition:opacity .4s ease, transform .4s ease, visibility .4s; }
+  html.js [data-nav="show"], html.js [data-nav]:focus-within { opacity:1; visibility:visible; transform:none; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-anim] *, [data-anim] { animation:none !important; transform:none !important; }
+    [data-reveal] { opacity:1 !important; transform:none !important; }
   }
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ -webkit-text-size-adjust:100%; }
-
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:"Hanken Grotesk",system-ui,sans-serif;
-    font-weight:400;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    min-height:100vh;
-    min-height:100svh;
-    display:flex;
-    flex-direction:column;
+  @media (max-width:600px){
+    nav[aria-label="Primary"]{padding-left:14px;padding-right:14px;gap:10px}
+    nav[aria-label="Primary"]>a{font-size:11px;letter-spacing:.14em}
+    nav[aria-label="Primary"]>div{gap:12px}
+    nav[aria-label="Primary"]>div a{font-size:10px;letter-spacing:.08em}
   }
-
-  .page{
-    flex:1 0 auto;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:clamp(3rem,8vh,7rem) 1.5rem clamp(2rem,5vh,4rem);
-  }
-
-  .eyebrow{
-    font-size:.7rem;
-    letter-spacing:.4em;
-    text-transform:uppercase;
-    color:var(--ink-mute);
-    margin-bottom:clamp(1.6rem,4vh,2.6rem);
-  }
-
-  .wordmark{
-    font-family:"Neue Einstellung","Jost",system-ui,sans-serif;
-    font-weight:400;
-    font-size:clamp(2.6rem,10vw,5.8rem);
-    letter-spacing:.22em;
-    line-height:1;
-    text-indent:.22em; /* offset the trailing track so caps sit centred */
-    color:var(--ink);
-  }
-
-  .tagline{
-    font-family:"Hanken Grotesk",system-ui,sans-serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:clamp(1rem,2.6vw,1.2rem);
-    color:var(--ink-soft);
-    margin-top:clamp(1rem,2.6vh,1.5rem);
-    letter-spacing:.01em;
-  }
-
-  /* Signature: a harmonic series — several notes from one source */
-  .partials{
-    margin:clamp(2.2rem,6vh,3.6rem) 0 clamp(2.2rem,6vh,3.4rem);
-    width:min(20rem,60vw);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:.5rem;
-  }
-  .partials span{
-    display:block;
-    height:1px;
-    background:var(--ink);
-    opacity:.5;
-    transform:scaleX(0);
-    transform-origin:center;
-  }
-  .partials span:nth-child(1){ width:100%; }
-  .partials span:nth-child(2){ width:72%;  opacity:.42; }
-  .partials span:nth-child(3){ width:52%;  opacity:.34; }
-  .partials span:nth-child(4){ width:37%;  opacity:.26; }
-  .partials span:nth-child(5){ width:26%;  opacity:.18; }
-
-  .lede{
-    font-family:"Jost",system-ui,sans-serif;
-    font-weight:300;
-    font-size:clamp(1.5rem,4.4vw,2.15rem);
-    line-height:1.34;
-    color:var(--ink);
-    max-width:24rem;
-    letter-spacing:.01em;
-  }
-
-  .body{
-    margin-top:clamp(1.5rem,4vh,2.2rem);
-    max-width:var(--measure);
-    font-size:clamp(.98rem,1.4vw,1.06rem);
-    line-height:1.72;
-    color:var(--ink-soft);
-  }
-
-  /* Proof slot — swap in the Green Room result after the event (see comment) */
-
-  .foot{
-    flex-shrink:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:.9rem;
-    padding:clamp(1.8rem,5vh,2.8rem) 1.5rem clamp(2rem,5vh,3rem);
-    border-top:1px solid var(--hair);
-    margin:0 auto;
-    width:min(var(--measure),100% - 3rem);
-  }
-  .foot-links{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:.6rem 2rem;
-  }
-  .foot a,
-  .foot .place{
-    font-size:.72rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--ink-mute);
-  }
-  .foot a{
-    text-decoration:none;
-    transition:color .25s ease;
-  }
-  .foot a:hover,
-  .foot a:focus-visible{ color:var(--ink); }
-
-  a:focus-visible{
-    outline:1.5px solid var(--ink);
-    outline-offset:4px;
-    border-radius:1px;
-  }
-
-  @media (prefers-reduced-motion:no-preference){
-    .anim{ opacity:0; transform:translateY(10px); }
-    body.ready .anim{
-      opacity:1; transform:none;
-      transition:opacity 1s ease, transform 1s ease;
-    }
-    body.ready .d1{ transition-delay:.05s; }
-    body.ready .d2{ transition-delay:.30s; }
-    body.ready .d3{ transition-delay:.55s; }
-    body.ready .d4{ transition-delay:1.25s; }
-    body.ready .d5{ transition-delay:1.55s; }
-
-    body.ready .partials span{
-      transform:scaleX(1);
-      transition:transform .9s cubic-bezier(.22,.61,.36,1);
-    }
-    body.ready .partials span:nth-child(1){ transition-delay:.75s; }
-    body.ready .partials span:nth-child(2){ transition-delay:.83s; }
-    body.ready .partials span:nth-child(3){ transition-delay:.91s; }
-    body.ready .partials span:nth-child(4){ transition-delay:.99s; }
-    body.ready .partials span:nth-child(5){ transition-delay:1.07s; }
-  }
-  @media (prefers-reduced-motion:reduce){
-    .partials span{ transform:scaleX(1); }
-  }
+</style>
+<script src="./reveal.js"></script>
+<style>
+  .skiplink:focus { left:12px !important; top:12px !important; }
+  .navlink:hover, .footlink:hover { color:#1A1917 !important; }
+  html.js nav[data-nav] { opacity:0; visibility:hidden; transform:translateY(-100%); transition:opacity .4s ease, transform .4s ease, visibility .4s; }
+  html.js nav[data-nav="show"], html.js nav[data-nav]:focus-within { opacity:1; visibility:visible; transform:none; }
+.x1:hover{border-bottom-color:#1A1917 !important}
+.x2:hover{border-bottom-color:#1A1917 !important}
 </style>
 </head>
 <body>
+<div style="background:#F5F3ED;color:#1A1917;font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden">
+  <a href="#main" class="skiplink" style="position:absolute;left:-9999px;top:0;background:#1A1917;color:#F5F3ED;padding:12px 18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;z-index:60;text-decoration:none">Skip to content</a>
+<nav data-nav="hide" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(22px,6vw,96px);background:rgba(245,243,237,.92);backdrop-filter:blur(6px);border-bottom:1px solid #CFC9BC">
+  <a href="./index.html" style="font-family:'Neue Einstellung','Jost',sans-serif;font-size:13px;letter-spacing:.24em;text-decoration:none;color:#1A1917;white-space:nowrap">MULTIPHONIC</a>
+  <div style="display:flex;gap:clamp(13px,3vw,30px)">
+    <a href="./index.html" aria-current="page" class="navlink" style="position:relative;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none;padding-bottom:4px">Home<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:1px;background:#1A1917"></span></a>
+    <a href="./about.html" class="navlink" style="position:relative;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none;padding-bottom:4px">About</a>
+    <a href="./work.html" class="navlink" style="position:relative;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none;padding-bottom:4px">Work</a>
+    <a href="./contact.html" class="navlink" style="position:relative;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none;padding-bottom:4px">Contact</a>
+  </div>
+</nav>
+  <div style="max-width:1180px;margin:0 auto;padding:0 clamp(22px,6vw,96px)">
 
-  <main class="page">
+    <header id="top" style="min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(88px,14vh,140px) 0 clamp(48px,8vh,80px)">
+      <p data-anim="" style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#4A473F;margin:0 0 clamp(28px,5vh,48px);animation:fadeup .9s ease both">Cultural and commercial strategy</p>
+      <h1 data-anim="" style="font-family:'Neue Einstellung','Jost',system-ui,sans-serif;font-weight:400;font-size:clamp(1.72rem,8.4vw,5.4rem);letter-spacing:.22em;line-height:1;margin:0 -0.22em 0 0;color:#1A1917;animation:fadeup 1s ease .12s both">MULTIPHONIC</h1>
+      <p data-anim="" style="font-family:'DM Sans',sans-serif;font-style:italic;font-size:clamp(1rem,2.4vw,1.2rem);color:#4A473F;margin:clamp(18px,2.6vh,26px) 0 0;animation:fadeup 1s ease .26s both">Several notes, one voice.</p>
 
-    <p class="eyebrow anim d1">Cultural &amp; commercial strategy</p>
+      <div data-anim="" aria-hidden="true" style="display:flex;flex-direction:column;gap:7px;width:min(28rem,100%);margin:clamp(36px,6vh,60px) 0">
+        <div style="height:1px;background:#1A1917;opacity:.5;width:100%;transform-origin:left;animation:hsdraw 1s cubic-bezier(.22,.7,.2,1) .7s both"></div>
+        <div style="height:1px;background:#1A1917;opacity:.42;width:72%;transform-origin:left;animation:hsdraw 1s cubic-bezier(.22,.7,.2,1) .79s both"></div>
+        <div style="height:1px;background:#1A1917;opacity:.34;width:52%;transform-origin:left;animation:hsdraw 1s cubic-bezier(.22,.7,.2,1) .88s both"></div>
+        <div style="height:1px;background:#1A1917;opacity:.26;width:37%;transform-origin:left;animation:hsdraw 1s cubic-bezier(.22,.7,.2,1) .97s both"></div>
+        <div style="height:1px;background:#1A1917;opacity:.18;width:26%;transform-origin:left;animation:hsdraw 1s cubic-bezier(.22,.7,.2,1) 1.06s both"></div>
+      </div>
 
-    <h1 class="wordmark anim d2">MULTIPHONIC</h1>
+      <p data-anim="" style="font-family:'Neue Einstellung','Jost',sans-serif;font-weight:300;font-size:clamp(1.45rem,3.6vw,2.5rem);line-height:1.26;color:#1A1917;max-width:22ch;margin:0;text-wrap:pretty;animation:fadeup 1s ease 1.15s both">The commercial and communications engine for organisations built on ideas, culture and causes.</p>
 
-    <p class="tagline anim d3">Several notes, one voice.</p>
+      
+        <div data-anim="" aria-hidden="true" style="margin-top:clamp(44px,8vh,84px);animation:fadeup 1s ease 1.5s both">
+          <span style="display:block;width:1px;height:clamp(32px,5vh,44px);background:#CFC9BC;transform-origin:top;animation:cue 2.4s ease-in-out infinite"></span>
+        </div>
+      
+    </header>
 
-    <div class="partials" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span>
+    <div data-anim="" aria-hidden="true" style="display:flex;flex-direction:column;gap:7px;padding-bottom:clamp(56px,9vh,104px)">
+      <div style="height:1px;background:#1A1917;opacity:.5;width:100%;transform-origin:left"></div>
+      <div style="height:1px;background:#1A1917;opacity:.42;width:72%;transform-origin:left"></div>
+      <div style="height:1px;background:#1A1917;opacity:.34;width:52%;transform-origin:left"></div>
+      <div style="height:1px;background:#1A1917;opacity:.26;width:37%;transform-origin:left"></div>
+      <div style="height:1px;background:#1A1917;opacity:.18;width:26%;transform-origin:left"></div>
     </div>
 
-    <p class="lede anim d4">The commercial engine for organisations built on ideas, culture and causes.</p>
-
-    <p class="body anim d5">Mission-driven and culturally-led organisations are good at building movements, audiences and trust, and less well set up to fund them. Multiphonic builds the commercial side to match: revenue strategy, partnerships and sponsorship, and events that pay for themselves. We work across progressive causes, sport and culture, pairing commercial strategy with senior communications so the model and the message land together.</p>
-
-    <!--
-      PROOF SLOT — add after the Green Room (7 July). Paste below the .body:
-
-      <section class="proof anim d5" aria-label="Selected work"
-               style="margin-top:clamp(2rem,5vh,3rem);max-width:var(--measure);">
-        <p style="font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.7rem;">Selected work</p>
-        <p style="font-size:clamp(.98rem,1.4vw,1.06rem);color:var(--ink-soft);line-height:1.6;">
-          [The Green Room result — e.g. a speaker series built for the Australian
-          Greens that covered its costs on ticket revenue at its first edition.]
-        </p>
+    <main id="main">
+      <section style="display:flex;flex-wrap:wrap;gap:28px 64px;padding-bottom:clamp(64px,10vh,120px)">
+        <div style="flex:0 0 auto;width:min(170px,100%)">
+          <p data-reveal="" style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8A8478;margin:0">The wedge</p>
+        </div>
+        <div style="flex:1 1 min(340px,100%);min-width:0">
+          <h2 data-reveal="" style="font-family:'Neue Einstellung','Jost',sans-serif;font-weight:300;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.28;color:#1A1917;max-width:26ch;margin:0;text-wrap:pretty">Most firms sell one half of what a mission-driven organisation needs. We build both.</h2>
+          <p data-reveal="" style="font-size:1.02rem;line-height:1.72;color:#4A473F;max-width:62ch;margin:26px 0 0;text-wrap:pretty">Mission-driven and culturally-led organisations are rich in belief, audience and talent, and under-built on the two things that turn a good idea into a lasting one: the money that funds it, and the message that makes it land. We build both.</p>
+          <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:clamp(32px,5vh,48px)">
+            <a href="./about.html" style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#1A1917;text-decoration:none;border-bottom:1px solid #CFC9BC;padding-bottom:4px" class="x1">About the firm</a>
+            <a href="./work.html" style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#1A1917;text-decoration:none;border-bottom:1px solid #CFC9BC;padding-bottom:4px" class="x2">Selected work</a>
+          </div>
+        </div>
       </section>
-    -->
+    </main>
 
-  </main>
-
-  <footer class="foot">
-    <span class="place">Sydney</span>
-    <div class="foot-links">
-      <a href="mailto:jasper@multiphonic.com.au">jasper@multiphonic.com.au</a>
-      <a href="mailto:brid@multiphonic.com.au">brid@multiphonic.com.au</a>
-      <a href="https://www.linkedin.com/company/multiphonic-au/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </footer>
-
-  <script>
-    window.addEventListener('load', function(){
-      requestAnimationFrame(function(){ document.body.classList.add('ready'); });
-    });
-  </script>
-
+    <footer style="border-top:1px solid #CFC9BC;padding:clamp(36px,6vh,56px) 0 clamp(40px,7vh,64px);display:flex;flex-wrap:wrap;gap:28px 64px;justify-content:space-between;align-items:flex-start">
+  <div>
+    <div style="font-family:'Neue Einstellung','Jost',sans-serif;font-size:14px;letter-spacing:.22em;color:#1A1917">MULTIPHONIC</div>
+    <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A8478;margin-top:12px">Cultural and commercial strategy, Sydney</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px 40px">
+    <a href="./about.html" class="footlink" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none">About</a>
+    <a href="./work.html" class="footlink" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none">Work</a>
+    <a href="./contact.html" class="footlink" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none">Contact</a>
+    <a href="https://www.linkedin.com/company/multiphonic-au/" target="_blank" rel="noopener" class="footlink" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4A473F;text-decoration:none">LinkedIn</a>
+  </div>
+</footer>
+  </div>
+</div>
 </body>
 </html>
