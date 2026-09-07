@@ -2,7 +2,11 @@
 
 Static site. Plain HTML, no build step, no dependencies except Google Fonts.
 
-## Contents
+## Folder structure
+
+Every file below sits at the SAME level, the repository root. The only
+subfolder is `assets`. Upload the CONTENTS of this folder, not the folder
+itself, so that `index.html` is at the top level of the repository.
 
 ```
 index.html                  Home
@@ -13,10 +17,32 @@ work-green-room.html        Case study, The Green Room
 work-state-library.html     Case study, State Library of New South Wales
 work-vivid-sydney.html      Case study, Vivid Sydney
 work-cricketcon.html        Case study, CricketCon
-reveal.js                   Optional scroll reveal, page works fully without it
-assets/                     Portraits
+favicon.svg                 The Multiphonic M
+reveal.js                   Optional scroll reveal, pages work fully without it
 .nojekyll                   Tells GitHub Pages to serve files as they are
+README.md                   This file, not published
+assets/
+  jasper.png                Portrait, source file
+  brid.png                  Portrait, source file
 ```
+
+## Images
+
+The two portraits are embedded directly inside `about.html` and
+`contact.html`, so they cannot go missing in an upload and need no separate
+files to load. The copies in `assets` are the source images, kept for future
+editing. If you delete `assets`, the site still displays correctly.
+
+The favicon is linked in the head of every page in two ways: embedded, and as
+`./favicon.svg` sitting beside the HTML files. Keep `favicon.svg` at the
+root next to `index.html`.
+
+## Relative paths
+
+All internal links are relative and flat, for example `./about.html` and
+`./work-green-room.html`. Nothing refers to a parent folder or an absolute
+path, so the site works at a domain root and in a subfolder such as
+`username.github.io/multiphonic` without any change.
 
 ## Publishing to GitHub Pages
 
